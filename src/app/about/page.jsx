@@ -3,7 +3,6 @@
 import { motion, useInView, useScroll } from "framer-motion";
 import Brain from "../components/brain"
 import { useRef } from "react";
-import Image from "next/image";
 
 const AboutPage = ()=>{
     const skills = ["ReactJs", "JavaScript", "Java", "Python", "Framer Motion", "Tailwind Css","MongoDB","MySQL","PostgresSQL", "GraphQL","NEXT JS"]
