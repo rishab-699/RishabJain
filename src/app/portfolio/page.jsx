@@ -71,37 +71,34 @@ const PortfolioPage = () => {
         </div>
 
         {/* Horizontal scroll section */}
-        <div className={`h-[${sectionHeight}vh] relative`}>
-          <div className="sticky top-0 h-screen flex items-center overflow-hidden">
-            <motion.div style={{ x }} className="flex h-full bg-gradient-to-r from-red-50 to-blue-300">
-                <div className={"h-screen w-screen flex items-center justify-center gap-4 bg-gradient-to-r from-red-50 to-blue-50"}/>
-              {projectList.map((item) => (
-                <div
-                  key={item.id}
-                  className={`h-full w-screen flex items-center justify-center bg-gradient-to-r ${item.color}`}
-                >
-                  <div className="flex flex-col gap-2 text-white p-6">
-                    <h1 className="text-xl md:text-2xl lg:text-4xl xl:text-6xl">{item.title}</h1>
-                    <div className="relative w-80 h-56 md:w-96 md:h-64 lg:w-[500px] lg:h-[350px] xl:w-[550px] xl:h-[570px]">
-                      <Image
-                        src={item.img}
-                        alt="Project Image"
-                        fill
-                        className="object-contain"
-                      />
-                    </div>
-                    <p className="text-lg w-80 md:w-96 lg:w-[500px] xl:w-[550px]">{item.desc}</p>
-                    <Link href={item.link} className="flex justify-end" target="_blank">
-                      <button className="px-6 py-2 bg-white text-black rounded-lg font-semibold shadow-md hover:scale-105 transition">
-                        See Demo
-                      </button>
-                    </Link>
-                  </div>
-                </div>
-              ))}
-            </motion.div>
+        {/* Horizontal scroll section */}
+<div style={{ height: `${sectionHeight}vh` }} className="w-screen relative">
+  <div className="sticky top-0 h-screen flex items-center overflow-hidden">
+    <motion.div style={{ x }} className="flex h-full bg-gradient-to-r from-red-50 to-blue-300">
+      <div className="w-screen h-screen flex items-center justify-center bg-gradient-to-r from-red-50 to-blue-300"></div>
+      {projectList.map((item) => (
+        <div
+          key={item.id}
+          className={`w-screen h-screen flex items-center justify-center bg-gradient-to-r ${item.color}`}
+        >
+          <div className="flex flex-col gap-4 text-white p-6 max-h-[90vh] overflow-y-auto">
+            <h1 className="text-xl md:text-2xl lg:text-4xl xl:text-6xl">{item.title}</h1>
+            <div className="relative w-80 h-56 md:w-96 md:h-64 lg:w-[500px] lg:h-[350px] xl:w-[550px] xl:h-[570px]">
+              <Image src={item.img} alt="Project Image" fill className="object-contain" />
+            </div>
+            <p className="text-lg w-80 md:w-96 lg:w-[500px] xl:w-[550px]">{item.desc}</p>
+            <Link href={item.link} className="flex justify-end" target="_blank">
+              <button className="px-6 py-2 bg-white text-black rounded-lg font-semibold shadow-md hover:scale-105 transition">
+                See Demo
+              </button>
+            </Link>
           </div>
         </div>
+      ))}
+    </motion.div>
+  </div>
+</div>
+
 
         {/* Hire Me Section */}
         <div className="w-screen h-screen overflow-hidden flex flex-col items-center justify-center gap-24 bg-gray-50">

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const Homepage = () => {
   return <motion.div className="h-full"
@@ -25,12 +26,12 @@ const Homepage = () => {
           to continuous learning.
         </p>
         <div className="w-full flex gap-4 text-sm sm:text-base">
-          <button className="p-4 bg-black text-white rounded-lg ring-1">
+          <Link className="p-4 bg-black text-white rounded-lg ring-1" href='/portfolio'>
             View my Work
-          </button>
-          <button className="">
+          </Link>
+          <Link className="p-4 bg-white text-black rounded-lg" href='/contact'>
             Contact me
-          </button>
+          </Link>
         </div>
       </div>
     </div>
