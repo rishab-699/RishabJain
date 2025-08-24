@@ -3,6 +3,7 @@
 import { motion, useInView, useScroll } from "framer-motion";
 import Brain from "../components/brain"
 import { useRef } from "react";
+import Image from "next/image";
 
 const AboutPage = ()=>{
     const skills = ["ReactJs", "JavaScript", "Java", "Python", "Framer Motion", "Tailwind Css","MongoDB","MySQL","PostgresSQL", "GraphQL","NEXT JS"]
@@ -28,12 +29,15 @@ const AboutPage = ()=>{
                         React, Node.js, and Python. Committed
                         to continuous learning.
                     </p>
-                    <div className="w-full text-right">
-                        <span>Rishab Jain</span>
+                    <div className="w-full flex items-end justify-end text-right">
+                            <img 
+                            src="/signature.svg" 
+                            alt="rishab jain" 
+                            className="w-40 h-auto" 
+                            />
                     </div>
-                    <div className="">
-                        svg
-                    </div>
+ 
+                    
                 </div>
                 {/*Skills Container */}
                 <div className="flex flex-col gap-12 justify-center" ref={skillref}>
