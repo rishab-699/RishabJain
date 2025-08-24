@@ -119,7 +119,7 @@ const PortfolioPage = () => {
                     </defs>
                     <text fill="black" fontSize="23.5" fontWeight="bold">
                     <textPath href="#circlePath" startOffset="50%" textAnchor="middle">
-                        ● UI/UX Design ● Web Development ● AI-Integration ● Let's Work
+                        ● UI/UX Design ● Web Development ● AI-Integration ● Let&apos;ss Work
                     </textPath>
                     </text>
                 </motion.svg>
