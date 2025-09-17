@@ -66,7 +66,7 @@ const Navbar = ()=>{
     }
 
     return(
-        <div className="h-full flex items-center justify-between px-4 sm:px-8 md:px-12 lg:px-20 xl:px-48 text-xl">
+        <div className="h-full z-30 flex items-center justify-between px-4 sm:px-8 md:px-12 lg:px-20 xl:px-48 text-xl">
             {/*Menu */}
             <div className="hidden md:flex gap-4 w-1/3">
                 {links.map((link)=>{
@@ -100,7 +100,7 @@ const Navbar = ()=>{
             </div>
             {/*Responsive menu */}
             <div className="md:hidden">
-                <button className="w-10 h-8 flex flex-col justify-between z-50 relative" onClick={()=> setOpen(!open)}>
+                <button className="w-10 h-8 flex flex-col justify-between z-30 relative" onClick={()=> setOpen(!open)}>
                     <motion.div 
                         variants={topVariants}
                         animate={open?'open':'closed'}
@@ -122,7 +122,7 @@ const Navbar = ()=>{
                     initial='closed'
                     animate='open'
                     className="absolute top-0 left-0 h-screen w-screen bg-black text-white 
-                    flex flex-col items-center justify-center gap-8 text-4xl z-40">
+                    flex flex-col items-center justify-center gap-8 text-4xl z-30">
                         {links.map(links=>{
 
                         return <motion.div key={links.url} variants={listItemVariants}>
