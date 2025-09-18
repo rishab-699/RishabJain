@@ -22,7 +22,7 @@ const PortfolioPage = () => {
         const res = await fetch("/api/projects",{method:"GET"});
         if(res.ok){
           const data = await res.json();
-          console.log(data);
+          //console.log(data);
           sectionHeight = data.length *100;
           setProjects(data);
           setLoading(false)

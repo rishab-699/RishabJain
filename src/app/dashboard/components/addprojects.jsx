@@ -79,7 +79,7 @@ const Addprojects = ({setprojectform})=>{
                 // Abort signal to allow cancellation of the upload if needed.
                 abortSignal: abortController.signal,
             });
-            console.log("Upload response:", uploadResponse);
+            //console.log("Upload response:", uploadResponse);
             return uploadResponse;
         } catch (error) {
             // Handle specific error types provided by the ImageKit SDK.
@@ -122,13 +122,13 @@ const Addprojects = ({setprojectform})=>{
         }
         {/*get authentication params from API */}
         const uploadData = await handleUpload(category,aspectRatio);
-        console.log(uploadData)
+        //console.log(uploadData)
         if(uploadData === null) {
-            console.log('nodata in the fileData');
+            //console.log('nodata in the fileData');
             setloading(false);
             return;
         }else{
-            console.log(uploadData);
+            //console.log(uploadData);
             const projectData = {
                 title: title,
                 category: category,
@@ -143,7 +143,7 @@ const Addprojects = ({setprojectform})=>{
                 height: uploadData.height,
                 size: uploadData.size,
             }
-            console.log(projectData);
+            //console.log(projectData);
             await fetch("/api/projects",{
                 method: "POST",
                 headers: { "Content-Type": "application/json" },

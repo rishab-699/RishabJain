@@ -25,7 +25,7 @@ if (!cached) {
         };
 
         cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
-            console.log("MongoDB Connected");
+            //console.log("MongoDB Connected");
             return mongoose;
         });
     }

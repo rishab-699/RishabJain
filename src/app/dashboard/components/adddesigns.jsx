@@ -123,11 +123,11 @@ const Adddesigns = ({setDesignform})=>{
         const uploadData= await handleUpload(category,aspectRatio);
 
         if(uploadData === null) {
-            console.log('nodata in the fileData');
+            //console.log('nodata in the fileData');
                     setloading(false);
             return;
         }else{
-            console.log(uploadData);
+            //console.log(uploadData);
             const designData = {
                 title: title,
                 category: category,
@@ -141,7 +141,7 @@ const Adddesigns = ({setDesignform})=>{
                 height: uploadData.height,
                 size: uploadData.size,
             }
-            console.log(designData);
+            //console.log(designData);
             await fetch("/api/designs",{
                 method: "POST",
                 headers: { "Content-Type": "application/json" },

@@ -16,13 +16,13 @@ const DesignPage = () => {
         if (res.ok) {
           const data = await res.json();
           setDesigns(data);
-          console.log("Fetched designs:", data);
+          //console.log("Fetched designs:", data);
         } else {
           const error = await res.json();
-          console.error("Server error:", error);
+          //console.error("Server error:", error);
         }
       } catch (error) {
-        console.error("Fetch error:", error);
+        //console.error("Fetch error:", error);
       }
     };
 

@@ -35,7 +35,7 @@ export async function GET() {
                 }
             }
         } catch (error) {
-            console.log("Error reading directories:", error);
+            //console.log("Error reading directories:", error);
         }
         
         return NextResponse.json({

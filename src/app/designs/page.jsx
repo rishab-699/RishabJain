@@ -19,13 +19,13 @@ const DesignsPage = ()=>{
                 const res = await fetch("/api/designs",{method:"GET"});
                 if(res.ok){
                     const data = await res.json();
-                    console.log(data.data)
+                    //console.log(data.data)
                     setDesigns(data);
                     
                 }else{
                     const error = await res.json();
                     setError({errState:true, msg:"Server error"})
-                    console.log(error);
+                    //console.log(error);
                     setLoading(false);
                     return;
                 }
@@ -33,7 +33,7 @@ const DesignsPage = ()=>{
             } catch (error) {
                 setError({errState:true, msg:"error fetching data"})
                 setLoading(false);
-                console.log(error)
+                //console.log(error)
             }
             
         }

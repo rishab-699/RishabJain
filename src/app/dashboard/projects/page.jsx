@@ -4,7 +4,7 @@ import Addprojects from '../components/addprojects'
 import Link from "next/link";
 import Image from "next/image";
 
-const projectsPage = ()=>{
+const ProjectsPage = ()=>{
     const [projectform, setprojectform] = useState(false);
     const [project, setProjects] = useState([]);
       const [singleImg, setSingleImg] = useState(null);
@@ -17,13 +17,13 @@ const projectsPage = ()=>{
             if (res.ok) {
               const data = await res.json();
               setProjects(data);
-              console.log("Fetched projects:", data);
+              //console.log("Fetched projects:", data);
             } else {
               const error = await res.json();
-              console.error("Server error:", error);
+              //console.error("Server error:", error);
             }
           } catch (error) {
-            console.error("Fetch error:", error);
+            //console.error("Fetch error:", error);
           }
         };
     
@@ -103,7 +103,7 @@ const projectsPage = ()=>{
                         flex items-center justify-center
                         ">
                             <div className="bg-white rounded-xl w-fit max-w-[80%] relative flex flex-wrap items-center justify-center p-4 md:p-8">
-                                <button type="button" className="" onClick={()=>{setSingleImg(null)}}><img src="/close.svg" className="absolute top-4 right-4 object-contain h-5 w-5"/></button>
+                                <button type="button" className="" onClick={()=>{setSingleImg(null)}}><Image src="/close.svg" className="absolute top-4 right-4 object-contain h-5 w-5"/></button>
                                 <div
                                     className=" relative max-w-1/2 rounded-lg overflow-hidden shadow-md bg-gray-100"
                                     style={{
@@ -126,4 +126,4 @@ const projectsPage = ()=>{
     )
 }
 
-export default projectsPage;
+export default ProjectsPage;
