@@ -17,10 +17,6 @@ const projectSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    aspectRatio: {
-        type: String,
-        required: true
-    },
     fileId: {
         type: String,
         required: true
@@ -31,7 +27,6 @@ const projectSchema = new mongoose.Schema({
     },
     thumbnailUrl: {
         type: String,
-        required: true
     },
     name: {
         type: String,

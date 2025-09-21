@@ -13,10 +13,6 @@ const designSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    aspectRatio: {
-        type: String,
-        required: true
-    },
     fileId: {
         type: String,
         required: true
@@ -27,7 +23,6 @@ const designSchema = new mongoose.Schema({
     },
     thumbnailUrl: {
         type: String,
-        required: true
     },
     name: {
         type: String,
@@ -35,17 +30,17 @@ const designSchema = new mongoose.Schema({
     },
     width: { 
         type: Number,
-                required: true
+        required: true
 
     },
     height: { 
         type: Number,
-                required: true
+        required: true
  
     },
     size: { 
         type: Number,
-                required: true
+        required: true
  
     },
 }, {

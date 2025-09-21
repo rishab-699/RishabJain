@@ -86,19 +86,27 @@ const Adddesigns = ({setDesignform})=>{
             if (error instanceof ImageKitAbortError) {
                 console.error("Upload aborted:", error.reason);
                 setError({status:true, msg:'Upload aborted'});
+                                setloading(false);
             } else if (error instanceof ImageKitInvalidRequestError) {
                 console.error("Invalid request:", error.message);
                 setError({status:true, msg:'Invalid request'})
+                setloading(false);
             } else if (error instanceof ImageKitUploadNetworkError) {
                 console.error("Network error:", error.message);
+                                setloading(false);
+
                 setError({status:true, msg:'Network error'})
             } else if (error instanceof ImageKitServerError) {
                 console.error("Server error:", error.message);
                 setError({status:true, msg:'Server error'})
+                                setloading(false);
+
             } else {
                 // Handle any other errors that may occur.
                 console.error("Upload error:", error);
                 setError({status:true, msg:'Upload error'})
+                                setloading(false);
+
             }
         }
     };
@@ -127,7 +135,7 @@ const Adddesigns = ({setDesignform})=>{
                     setloading(false);
             return;
         }else{
-            //console.log(uploadData);
+            console.log(uploadData);
             const designData = {
                 title: title,
                 category: category,
@@ -135,18 +143,21 @@ const Adddesigns = ({setDesignform})=>{
                 aspectRatio: aspectRatio,
                 fileId: uploadData.fileId,
                 url: uploadData.url,
-                thumbnailUrl: uploadData.thumbnailUrl,
+                thumbnailUrl: uploadData.thumbnailUrl=== undefined ? "NO URL": uploadData.thumbnailUrl,
                 name: uploadData.name,
                 width: uploadData.width,
                 height: uploadData.height,
                 size: uploadData.size,
             }
-            //console.log(designData);
-            await fetch("/api/designs",{
+            console.log(designData);
+            const res = await fetch("/api/designs",{
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(designData),
             })
+            setloading(false);
+            setDesignform(false);
+            console.log(res);
         }
         setloading(false)
         setDesignform(false);
@@ -161,7 +172,6 @@ const Adddesigns = ({setDesignform})=>{
                         <progress className=" bg-black" value={progress} max={100}></progress>
                     </div>}
                 <div className="w-1/2 flex flex-col gap-4">
-
                     <div>
                         <input type="file" name="designfile" id="designfile" ref={fileInputRef} onChange={handleFileChange} hidden disabled={loading}/>
                         <label htmlFor="designfile"><img src={preview || "/uploadImg.svg"} className="object-contain h-60 w-full" id="designfile" alt="" /></label>
@@ -180,7 +190,6 @@ const Adddesigns = ({setDesignform})=>{
                     <input type="text" name="title" id='title' disabled={loading} className="outline-none border-b-2 border-black text-lg" placeholder="Title" />
                     <input type="text" name="category" id='category' disabled={loading} className="outline-none border-b-2 border-black text-lg" placeholder="design category" />
                     <textarea type="text" name="overview" id='overview' disabled={loading} className="outline-none h-28 border-b-2 border-black text-lg" placeholder="design overview"></textarea>
-                    
                     
                     <button type="submit" disabled={loading} className="w-full py-2 text-xl text-white bg-blue-900 font-bold hover:bg-blue-950 text-center">upload</button>
                 </div>

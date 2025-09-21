@@ -103,7 +103,7 @@ const ProjectsPage = ()=>{
                         flex items-center justify-center
                         ">
                             <div className="bg-white rounded-xl w-fit max-w-[80%] relative flex flex-wrap items-center justify-center p-4 md:p-8">
-                                <button type="button" className="" onClick={()=>{setSingleImg(null)}}><Image src="/close.svg" className="absolute top-4 right-4 object-contain h-5 w-5"/></button>
+                                <button type="button" className="w-4 h-4 absolute top-4 right-4" onClick={()=>{setSingleImg(null)}}><Image src="/close.svg" fill className=" object-contain h-5 w-5"/></button>
                                 <div
                                     className=" relative max-w-1/2 rounded-lg overflow-hidden shadow-md bg-gray-100"
                                     style={{

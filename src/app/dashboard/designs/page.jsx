@@ -7,6 +7,8 @@ const DesignPage = () => {
   const [designform, setDesignform] = useState(false);
   const [designs, setDesigns] = useState([]);
   const [singleImg, setSingleImg] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [initialized, setInitialized] = useState(false)
 
   useEffect(() => {
     const getDesigns = async () => {
@@ -67,10 +69,10 @@ const DesignPage = () => {
                 key={index}
                 className="relative rounded-lg overflow-hidden h-fit shadow-md bg-gray-100 cursor-pointer"
                 style={{
-                  width: "160px", // fixed column width
+                  height: "240px", // fixed column width
                   aspectRatio, // ✅ Dynamic ratio applied here
                 }}
-                onClick={()=> setSingleImg({...item, aspectRatio})}
+                onClick={()=> setSingleImg({...item, aspectRatio, type})}
               >
                 {type === "image" && (
                   <Image
@@ -82,13 +84,25 @@ const DesignPage = () => {
                 )}
 
                 {type === "video" && (
+                  (loading && !initialized)? <motion.h1 
+                  initial={{opacity:"0%"}}
+                  animate={{opacity:"100%"}}
+                  transition={{duration:2, repeat:Infinity, ease:"easeIn"}}
+                  className="text-xl"
+                  >Loading...</motion.h1>:
                   <video
-                    src={item.url || item.imagesrc}
+                    src={item.url}
                     className="object-cover w-full h-full"
                     autoPlay
                     loop
                     muted
                     playsInline
+                    onCanPlay={() => {
+                    setLoading(false);
+                    setInitialized(true);
+                  }}
+                  // if you want to catch network stalls, uncomment ↓
+                  // onWaiting={() => !initialized && setLoading(true)}
                   />
                 )}
 
@@ -109,20 +123,55 @@ const DesignPage = () => {
             flex items-center justify-center
             ">
                 <div className="bg-white w-fit max-w-[80%] rounded-xl relative flex flex-wrap items-center justify-center p-4 md:p-8">
-                    <button type="button" className="" onClick={()=>{setSingleImg(null)}}><img src="/close.svg" className="absolute top-4 right-4 object-contain h-5 w-5"/></button>
+                    <button type="button" className="absolute top-4 right-4 h-4 w-4" onClick={()=>{setSingleImg(null)}}><img src="/close.svg" className=" object-contain h-5 w-5"/></button>
                     <div
                         className=" relative max-w-1/2 rounded-lg overflow-hidden shadow-md bg-gray-100"
                         style={{
-                        width: "360px", // fixed column width
+                        height: "264px", // fixed column width
                         aspectRatio: singleImg.aspectRatio, // ✅ Dynamic ratio applied here
                         }}
                     >
-                        <Image src={singleImg.url} fill alt={singleImg.title || "design"} className="object-contain w-full h-full"/>
-                    </div>
+                    {singleImg.type === "image" && (
+                                      <Image
+                                        src={singleImg.url}
+                                        alt={singleImg.title || "design"}
+                                        fill
+                                        className="object-cover cursor-pointer transition-transform duration-300 hover:scale-105 hover:shadow-xl"
+                                      />
+                                    )}
+                    
+                                    {singleImg.type === "video" && (
+                                      (loading && !initialized)? <motion.h1 
+                                      initial={{opacity:"0%"}}
+                                      animate={{opacity:"100%"}}
+                                      transition={{duration:2, repeat:Infinity, ease:"easeIn"}}
+                                      className="text-xl"
+                                      >Loading...</motion.h1>:
+                                      <video
+                                        src={singleImg.url}
+                                        className="object-cover w-full h-full"
+                                        autoPlay
+                                        loop
+                                        muted
+                                        playsInline
+                                        onCanPlay={() => {
+                                        setLoading(false);
+                                        setInitialized(true);
+                                      }}
+                                      // if you want to catch network stalls, uncomment ↓
+                                      // onWaiting={() => !initialized && setLoading(true)}
+                                      />
+                                    )}
+                    
+                                    {singleImg.type === "unknown" && (
+                                      <div className="flex items-center justify-center w-full h-full bg-gray-200 text-gray-600">
+                                        Unsupported File
+                                      </div>
+                                    )}                    </div>
                     <div className="w-1/2 flex flex-col gap-4 p-4">
                         
                         <span className="text-4xl font-bold">{singleImg.title}</span>
-                        <span className="text-xl">{singleImg.category}</span>
+                        <span className="text-xl flex gap-2"><h3 className="font-bold">Category:</h3>{singleImg.category}</span>
                         <span className="text-xl">{singleImg.overview}</span>
                     </div>
                 </div>

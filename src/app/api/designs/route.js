@@ -12,7 +12,7 @@ export async function POST(req) {
         const newDesign = await Design.create(body);
         return NextResponse.json(newDesign, { status: 201 });
     } catch (error) {
-        //console.error("Error saving design:", error);
+        console.error("Error saving design:", error);
         return NextResponse.json({ error: "Failed to save design" }, { status: 500 });
     }
 }
