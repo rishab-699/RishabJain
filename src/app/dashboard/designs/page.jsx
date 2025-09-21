@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Adddesigns from "../components/adddesigns";
+import { motion } from "framer-motion";
 
 const DesignPage = () => {
   const [designform, setDesignform] = useState(false);
