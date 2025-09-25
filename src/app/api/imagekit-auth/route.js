@@ -8,7 +8,8 @@ export async function GET() {
         privateKey: process.env.IMAGEKIT_PRIVATEKEY, // Never expose this on client side
         publicKey: process.env.IMAGEKIT_PUBLICKEY,
         expire:  Math.floor(Date.now() / 1000) + 60 * 10, // Optional, controls the expiry time of the token in seconds, maximum 1 hour in the future
-        token: randomUUID(), // Optional, a unique token for request
+        token: randomUUID() + "-" + Date.now()
+, // Optional, a unique token for request
     })
 
     return Response.json({ token, expire, signature, publicKey: process.env.IMAGEKIT_PUBLICKEY })

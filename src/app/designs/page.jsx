@@ -73,7 +73,7 @@ const DesignsPage = ()=>{
                         initial={{opacity:"100%"}}
                         animate={{opacity:"10%"}}
                         transition={{duration:1, ease:"easeInOut", repeat:Infinity}}
-                        className="w-15 md:w-30 md:max-w-32 h-30 md:h-60 md:max-h-64 aspect-[1/1}] bg-gray-700" />
+                        className="w-15 md:w-30 md:w-32 h-30 md:h-60 aspect-[1/1}] bg-gray-700" />
                     
                     :
                     designs.length > 0 ? (
