@@ -1,6 +1,6 @@
 const DashboardPage = ()=>{
     return(
-        <div className="p-4">
+        <div className="w-[calc(100vw-25%)]">
             dashboard page
         </div>
     )

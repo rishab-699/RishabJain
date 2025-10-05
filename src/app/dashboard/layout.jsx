@@ -9,7 +9,7 @@ export default function DashboardLayout({ children }) {
         </div>
         <Sidebar/>
         </aside>
-      <main className="flex-1 overflow-x-hidden">{children}</main>
+      <main className="w-[calc(100vw-25%)] overflow-x-hidden">{children}</main>
     </div>
   );
 }
