@@ -53,7 +53,9 @@ const Loader = ()=>{
 const Blogpage = ()=>{
     const [blogDetails,setBlogDetails] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [error, setError]=useState({errState:false, msg:''})
+    const [error, setError]=useState({errState:false, msg:''});
+        const [firstParagraph,setFirstParagraph] = useState({});
+
     useEffect(()=>{
         const fetchData = async()=>{
             try {
@@ -66,9 +68,10 @@ const Blogpage = ()=>{
             }
             const data = await res.json();
             setBlogDetails(data);
-            console.log(data);
+            //console.log(data);
+            setFirstParagraph(data[0]?.sections?.find(s => s.type === 'Paragraph'));
             setLoading(false);
-            console.log('loading: '+loading);
+            //console.log('loading: '+loading);
             } catch (error) {
                 setError({errState:true, msg:'Something went wrong!'});
             }
@@ -84,13 +87,13 @@ const Blogpage = ()=>{
             <div className="flex items-center justify-between p-4 w-full">
                 <p className="text-4xl font-bold">Blog Page</p>
             </div>
-            <div className="flex items-start gap-4 flex-wrap">
+            <div className="flex items-start h-[calc(100vh-200px)] overflow-y-auto scrollbar-hide gap-4 flex-wrap">
                 {loading && <Loader/>}
                 {blogDetails.length>0 && 
                     blogDetails.map((blog,idx)=>{
-                        return(<Link href={`/blog/${blog._id}`} key={idx} className="w-fit bg-white hover:bg-gray-50 flex flex-col items-center gap-4 cursor-pointer p-4 rounded-xl">
+                        return(<Link href={`/blog/${blog._id}`} key={idx} className="w-fit bg-white max-h-[95%] h-[95%] hover:bg-gray-50 flex flex-col items-center gap-4 cursor-pointer p-4 rounded-xl">
                             
-                            <span className="text-2xl font-bold">{blog.title}</span>
+                            <p className="text-2xl max-w-[32rem] mt-2 mb-2 font-bold">{blog.title}</p>
                             <div className="h-64 aspect-[16/9] relative border-0 rounded-xl">
                                 <Image
                                     src={blog.heroImg.url}
@@ -99,12 +102,12 @@ const Blogpage = ()=>{
                                 />
                             </div>
                             <div className="text-lg font-bold w-fit max-w-[32rem]">{
-                                blog?.sections?.map((value,idx)=>{
-                                    return <div key={idx}>{value.type === 'Paragraph' && 
-                                        <span  className="text-sm font-medium line-clamp-3 text-clip">{value.paragraph}</span>
-                                    }</div>
-                                })
-                            }</div>
+                                firstParagraph && (
+                                        <p className="whitespace-pre-line break-words break-all text-gray-700 leading-relaxed text-sm font-medium line-clamp-3 w-full text-clip">
+                                            {firstParagraph.paragraph}
+                                        </p>
+                                    )
+                                }</div>
                                 
                             
                         </Link>)

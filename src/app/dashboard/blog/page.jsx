@@ -69,7 +69,6 @@ const Blogpage = ()=>{
             setBlogDetails(data);
             console.log(data);
             setFirstParagraph(data[0]?.sections?.find(s => s.type === 'Paragraph'));
-            console.log(firstParagraph);
             setLoading(false);
             console.log('loading: '+loading);
             } catch (error) {
