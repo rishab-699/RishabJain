@@ -7,6 +7,11 @@ const SectionSchema = new mongoose.Schema(
       enum: ["Paragraph", "Paragraph+image", "image+Paragraph", "image/Paragraph"],
       required: true,
     },
+    title:{
+      type: String,
+      default: "",
+    },
+    
     paragraph: {
       type: String,
       default: "",

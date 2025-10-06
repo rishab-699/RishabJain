@@ -54,6 +54,7 @@ const Blogpage = ()=>{
     const [blogDetails,setBlogDetails] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError]=useState({errState:false, msg:''})
+    const [firstParagraph,setFirstParagraph] = useState({});
     useEffect(()=>{
         const fetchData = async()=>{
             try {
@@ -67,6 +68,8 @@ const Blogpage = ()=>{
             const data = await res.json();
             setBlogDetails(data);
             console.log(data);
+            setFirstParagraph(data[0]?.sections?.find(s => s.type === 'Paragraph'));
+            console.log(firstParagraph);
             setLoading(false);
             console.log('loading: '+loading);
             } catch (error) {
@@ -100,11 +103,11 @@ const Blogpage = ()=>{
                             <div className=" w-full p-4 flex flex-col gap-4">
                                 <span className="text-lg font-bold w-full">{blog.title}</span>
                                 <div className="text-lg font-bold w-full">{
-                                    blog?.sections?.map((value,idx)=>{
-                                        return <div key={idx}>{value.type === 'Paragraph' && 
-                                            <span  className="text-sm font-medium line-clamp-3 w-full text-clip">{value.paragraph}</span>
-                                        }</div>
-                                    })
+                                    firstParagraph && (
+                                        <p className="whitespace-pre-line break-words break-all text-gray-700 leading-relaxed text-sm font-medium line-clamp-3 w-full text-clip">
+                                            {firstParagraph.paragraph}
+                                        </p>
+                                    )
                                     }</div>
                                 
                             </div>

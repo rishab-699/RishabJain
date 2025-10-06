@@ -57,13 +57,13 @@ const BlogCard = ({ blogID })=>{
                         <div>
                             {blog.sections.map((value,idx)=>{
                                 return(
-                                    <div key={idx} className="w-full flex flex-col items-center gap-4">
+                                    <div key={idx} className="w-full mt-4 flex flex-col items-center gap-2">
                                         {value.type === 'Paragraph' &&
                                             <>
-                                                {value.title && <span className="text-lg font-bold">{value.title}</span>}
-                                                <span className="text-lg">
+                                                {value.title && <span className="text-lg w-full text-left font-bold">{value.title}</span>}
+                                                <p  className="whitespace-pre-line break-words break-all text-gray-700 leading-relaxed text-lg">
                                                     {value.paragraph}
-                                                </span>
+                                                </p>
                                             </>
                                         }
                                         {value.type === 'image/Paragraph'&&
@@ -76,10 +76,10 @@ const BlogCard = ({ blogID })=>{
                                                         className="object-cover"
                                                     />
                                                 </div>
-                                                {value.title && <span className="text-lg font-bold">{value.title}</span>}
-                                                <span className="text-lg">
+                                                {value.title && <span className="text-lg w-full text-left font-bold">{value.title}</span>}
+                                                <p  className="whitespace-pre-line break-words break-all text-gray-700 leading-relaxed text-lg">
                                                     {value.paragraph}
-                                                </span>
+                                                </p>
                                             </>
                                         }
                                         {value.type === 'image+Paragraph'&&
@@ -92,19 +92,19 @@ const BlogCard = ({ blogID })=>{
                                                         className="object-cover"
                                                     />
                                                 </div>
-                                                {value.title && <span className="text-lg font-bold">{value.title}</span>}
-                                                <span className="text-lg">
+                                                {value.title && <span className="text-lg w-full text-left font-bold">{value.title}</span>}
+                                                <p  className="whitespace-pre-line break-words break-all text-gray-700 leading-relaxed text-lg">
                                                     {value.paragraph}
-                                                </span>
+                                                </p>
                                             </div>
                                         }
                                         {value.type === 'Paragraph+image'&&
                                             <div className="flex gap-4">  
                                                 <div>
-                                                    {value.title && <span className="text-lg font-bold">{value.title}</span>}
-                                                    <span className="text-lg">
+                                                    {value.title && <span className="text-lg w-full text-left font-bold">{value.title}</span>}
+                                                    <p  className="whitespace-pre-line break-words break-all text-gray-700 leading-relaxed text-lg">
                                                         {value.paragraph}
-                                                    </span>
+                                                    </p>
                                                 </div>
                                                 <div className="relative h-44 aspect-[3/4]">
                                                     <Image
